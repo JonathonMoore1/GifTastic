@@ -1,0 +1,17 @@
+#human-buttons {
+	top: 0;
+	left: 0;
+	display: inline-block;
+	float: left;
+	margin: 10px;
+}
+
+#human-form {
+	position: relative;
+	float: right;
+	margin: 10px;
+}
+
+button {
+	margin: 2.5px;
+}
