@@ -24,5 +24,16 @@ $(document).ready(function() {
 	//=========================
 	//API links and ajax set-up
 	//=========================
-	
+
+	var userChoice = '';
+	var xhr = "https://api.giphy.com/v1/gifs/search?q=" + userChoice + "&api_key=I10x77v7F60ULe1QizULAvBVQhsOWmKI&limit=10&rating=pg";
+
+	$.ajax({
+		url: xhr,
+		method: "GET"
+	}).done(function(data) {
+		console.log(data);
+	});
+				
+
 });
