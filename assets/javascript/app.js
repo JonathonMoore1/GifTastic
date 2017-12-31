@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-	var topics = ["friend", "mother", "grandparent", "foe", "chef", "pianist", "programmer", "nemesis", "archduke", "lord", "worker", "slob", "migrant", "voyeur", "monk", "father", "companion", "competitor", "boss", "astrophysicist", "listener", "tourist", "patriot", "curmudgeon", "drunk", "hero", "rabblerouser", "dotard"];
+	var topics = ["friend", "mother", "grandparent", "foe", "chef", "pianist", "programmer", "nemesis", "reporter", "lord", "worker", "slob", "migrant", "voyeur", "monk", "father", "companion", "competitor", "boss", "astrophysicist", "listener", "tourist", "patriot", "curmudgeon", "drunk", "hero", "rabblerouser", "dotard"];
 	
 	//========================================================
 	//Generates a button for each of the strings in arr topics
@@ -21,34 +21,22 @@ $(document).ready(function() {
 	});
 
 
-	//=========================
-	//API links and ajax set-up
-	//=========================
-	var userChoice = "";
-	var xhr = "https://api.giphy.com/v1/gifs/search?q=" + userChoice + "&api_key=I10x77v7F60ULe1QizULAvBVQhsOWmKI&limit=10&rating=pg";
-
-	/*$.ajax({
-		url: xhr,
-		method: "GET"
-	}).done(function(data) {
-		console.log(data);
-	});*/
+	
 
 				
-	//==========================================================
-	//The value of the clicked button equals value of userChoice
-	//==========================================================
+	//==============================
+	//Ajax runs when button clicked
+	//==============================
+
 	$('button').on('click', function() {
-		userChoice += $(this).val();
-		/*$.ajax({url: xhr, success: function(data) {
-			$('#gif-dump').html(data);
-		}});*/
+		var userChoice = $(this).text();
+		var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=I10x77v7F60ULe1QizULAvBVQhsOWmKI&q=" + userChoice + "&limit=10&offset=0&rating=G&lang=en";
+		
 		$.ajax({
-			url: xhr,
+			url: queryURL,
 			method: "GET"
 		}).done(function(data) {
 			console.log(data);
-			$('#gif-dump').html(data);
 		});
 	});
 
