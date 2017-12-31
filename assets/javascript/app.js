@@ -5,6 +5,7 @@ $(document).ready(function() {
 	//========================================================
 	//Generates a button for each of the strings in arr topics
 	//========================================================
+
 	$.each(topics, function(i, val) {
 		$('#human-buttons').append('<button>' + val);
 		console.log(this);
@@ -14,14 +15,12 @@ $(document).ready(function() {
 	//========================================
 	//Generates new button based on user input
 	//========================================
+
 	$('#add-human').on('click', function(event) {
 		var newBtnVal = $('#human-input').val();
 		$('#human-buttons').append('<button>' + newBtnVal + '</button>');
 		event.preventDefault();
 	});
-
-
-	
 
 				
 	//==============================
@@ -29,7 +28,7 @@ $(document).ready(function() {
 	//==============================
 
 	$('button').on('click', function() {
-		var userChoice = $(this).text();
+		var userChoice = $(this).text();//Doesn't work on user-made buttons
 		var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=I10x77v7F60ULe1QizULAvBVQhsOWmKI&q=" + userChoice + "&limit=10&offset=0&rating=G&lang=en";
 		
 		$.ajax({
