@@ -13,11 +13,26 @@
 }
 
 #gif-dump {
-	position: relative;
+	position: absolute;
+	left: 0px;
 	float: left;
 	margin: 10px;
 }
 
 button {
 	margin: 2.5px;
+}
+
+header {
+	height: 15%;
+	border-bottom: 4px;
+	border-color: darkgray;
+	background-color: salmon;
+}
+
+section {
+	position: relative;
+	left: 0px;
+	padding: 30px;
+	margin: 20px;
 }
