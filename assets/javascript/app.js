@@ -31,7 +31,7 @@ $(document).ready(function() {
 
 	function displayGifs() {
 
-		$('gif-dump').empty();
+		$('#gif-dump').empty();
 
 		var userChoice;
 		var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=I10x77v7F60ULe1QizULAvBVQhsOWmKI&q=" + userChoice + "&limit=10&offset=0&rating=G&lang=en";
