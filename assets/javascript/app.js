@@ -43,7 +43,7 @@ $(document).ready(function() {
 			console.log(response.data);
 			for (i = 0; i < response.data.length; i++) {
 				var imgURL = response.data[i].images.fixed_height_still.url;
-				$('#gif-dump').append('<img class="gif" src=' + imgURL + '">');		
+				$('#gif-dump').append('<img class="gif" src="' + imgURL + '">');		
 			};
 		});
 	};
