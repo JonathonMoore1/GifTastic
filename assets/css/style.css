@@ -39,6 +39,20 @@ section {
 	margin: 20px;
 }
 
-.gif {
-	margin: 10px;
+/* p {
+	position: absolute;
 }
+
+.new-gif {
+	position: relative;
+	margin: 10px;
+	padding: 5px;
+	border-color: darkgrey;
+	border-style: solid;
+}
+
+
+.gif {
+	margin: 5px;
+	position: absolute;
+} */

@@ -42,14 +42,32 @@ $(document).ready(function() {
 		}).done(function(response) {
 			console.log(response.data);
 			for (i = 0; i < response.data.length; i++) {
-				var imgURL = response.data[i].images.fixed_height_still.url;
-				$('#gif-dump').append('<img class="gif" src="' + imgURL + '">');		
+  				var imgURL = response.data[i].images.fixed_height_still.url;
+  				var rating = response.data[i].rating;	
+ 				$('#gif-dump').append('<p><img class="gif" src="' + imgURL + '">' + rating + '</p>');	
 			};
 		});
 	};
 
+	$('body').on('click', '.gif', function() {
+	    var src = $(this).attr("src");
+			if($(this).hasClass('playing'))	{
+		     //stop
+			    $(this).attr('src', src.replace(/\.gif/i, "_s.gif"))
+			    $(this).removeClass('playing');
+			} else {
+			    //play
+			    $(this).addClass('playing');
+			    $(this).attr('src', src.replace(/\_s.gif/i, ".gif"))
+			};
+	});
+
 	$('#human-buttons').on('click', function() {
-		var userChoice = $(this).text();
+		$('#gif-dump').empty();
+		userChoice = $(this).val().trim();
+		//var buttonValue = $(this).val();
+		//buttonValue.push(userChoice);
+		console.log(userChoice);
 		event.preventDefault();
 		displayGifs();
 	});
