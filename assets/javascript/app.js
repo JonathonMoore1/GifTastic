@@ -52,19 +52,22 @@ $(document).ready(function() {
 	$('body').on('click', '.gif', function() {
 	    var src = $(this).attr("src");
 			if($(this).hasClass('playing'))	{
-		     //stop
-			    $(this).attr('src', src.replace(/\.gif/i, "_s.gif"))
+		     	//stop
+			    $(this).attr('src', src.replace(/\.gif/i, "_s.gif"));
 			    $(this).removeClass('playing');
 			} else {
 			    //play
 			    $(this).addClass('playing');
-			    $(this).attr('src', src.replace(/\_s.gif/i, ".gif"))
+			    $(this).attr('src', src.replace(/\_s.gif/i, ".gif"));
 			};
 	});
 
 	$('#human-buttons').on('click', function() {
 		$('#gif-dump').empty();
-		userChoice = $(this).val().trim();
+		userChoice = '';
+		btnVal = $(this).text().trim();
+		userChoice += btnVal;
+		//userChoice = $(this).val().trim();
 		//var buttonValue = $(this).val();
 		//buttonValue.push(userChoice);
 		console.log(userChoice);
