@@ -8,7 +8,7 @@ $(document).ready(function() {
 	function renderButtons() {
 		$('#human-buttons').empty();
 		$.each(topics, function(i, val) {
-			$('#human-buttons').append('<button>' + val);
+			$('#human-buttons').append('<button id="btn-' + i + '">' + val);
 			console.log(this);
 		});
 	};
@@ -22,18 +22,21 @@ $(document).ready(function() {
 		var newBtnVal = $('#human-input').val().trim();
 		topics.push(newBtnVal);
 		$('#human-buttons').append('<button>' + newBtnVal + '</button>');
+		renderButtons();
 	});
 
 				
 	//==============================
 	//Ajax runs when button clicked
 	//==============================
+	
+	var userChoice = '';
 
 	function displayGifs() {
 
 		$('#gif-dump').empty();
 
-		var userChoice;
+		// var userChoice;
 		var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=QCC1zuV5uK9phZPARyFYam9OUQW8IZbY&q=" + userChoice + "&limit=10&offset=0&rating=G&lang=en&fmt=json";
 		
 		$.ajax({
@@ -51,20 +54,19 @@ $(document).ready(function() {
 
 	$('body').on('click', '.gif', function() {
 	    var src = $(this).attr("src");
-			if($(this).hasClass('playing'))	{
-		     	//stop
-			    $(this).attr('src', src.replace(/\.gif/i, "_s.gif"));
-			    $(this).removeClass('playing');
-			} else {
-			    //play
-			    $(this).addClass('playing');
-			    $(this).attr('src', src.replace(/\_s.gif/i, ".gif"));
-			};
+		if($(this).hasClass('playing'))	{
+			//stop
+			$(this).attr('src', src.replace(/\.gif/i, "_s.gif"));
+			$(this).removeClass('playing');
+		} else {
+			//play
+			$(this).addClass('playing');
+			$(this).attr('src', src.replace(/\_s.gif/i, ".gif"));
+		};
 	});
 
 	$('#human-buttons').on('click', function() {
 		$('#gif-dump').empty();
-		userChoice = '';
 		btnVal = $(this).text().trim();
 		userChoice += btnVal;
 		//userChoice = $(this).val().trim();
