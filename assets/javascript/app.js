@@ -67,11 +67,14 @@ $(document).ready(function() {
 
 	$('#human-buttons').on('click', function() {
 		$('#gif-dump').empty();
-		btnVal = $(this).text().trim();
-		userChoice += btnVal;
-		//userChoice = $(this).val().trim();
-		//var buttonValue = $(this).val();
-		//buttonValue.push(userChoice);
+		var i = $.index(topics);
+		
+		
+		
+
+		// btnVal = $(this).text().trim();
+		// userChoice += btnVal;
+		
 		console.log(userChoice);
 		event.preventDefault();
 		displayGifs();
