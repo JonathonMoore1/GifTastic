@@ -12,7 +12,7 @@ $(document).ready(function() {
 			console.log(this);
 		});
 	};
-
+	// " onclick="getBtnVal(this.id)
 	//========================================
 	//Generates new button based on user input
 	//========================================
@@ -31,7 +31,9 @@ $(document).ready(function() {
 	//==============================
 	
 	var userChoice = '';
-
+	// function getBtnVal(this.id) {
+	// 	console.log(this).value();
+	// }
 	function displayGifs() {
 
 		$('#gif-dump').empty();
@@ -65,9 +67,14 @@ $(document).ready(function() {
 		};
 	});
 
-	$('#human-buttons').on('click', function() {
-		$('#gif-dump').empty();
-		var i = $.index(topics);
+	
+	$('#human-buttons').each(function(i) {
+		$(this).find('#btn-' + i).on('click', function(){
+			console.log(this);
+		})
+		
+	
+		//alert(clicked_id);
 		
 		
 		
@@ -76,7 +83,7 @@ $(document).ready(function() {
 		// userChoice += btnVal;
 		
 		console.log(userChoice);
-		event.preventDefault();
+		// event.preventDefault();
 		displayGifs();
 	});
 	
