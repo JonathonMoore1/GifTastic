@@ -8,7 +8,11 @@ $(document).ready(function() {
 	function renderButtons() {
 		$('#human-buttons').empty();
 		$.each(topics, function(i, val) {
-			$('#human-buttons').append('<button id="btn-' + i + '">' + val);
+			var newBtn = $('<button>')
+			newBtn.addClass('nice-buttons');
+			newBtn.attr('data-name', topics[i]);
+			newBtn.text(topics[i]);
+			$('#human-buttons').append(newBtn);
 			console.log(this);
 		});
 	};
@@ -67,23 +71,10 @@ $(document).ready(function() {
 		};
 	});
 
-	
-	$('#human-buttons').each(function(i) {
-		$(this).find('#btn-' + i).on('click', function(){
-			console.log(this);
-		})
-		
-	
-		//alert(clicked_id);
-		
-		
-		
-
-		// btnVal = $(this).text().trim();
-		// userChoice += btnVal;
-		
-		console.log(userChoice);
-		// event.preventDefault();
+	$('#human-buttons').on('click', '.nice-buttons', function(event) {
+		event.preventDefault();
+		$('#gif-dump').empty();
+		userChoice += $(this).attr('data-name');
 		displayGifs();
 	});
 	
