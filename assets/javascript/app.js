@@ -1,18 +1,18 @@
 $(document).ready(function() {
 
-	var topics = ["friend", "mother", "grandparent", "foe", "chef", "pianist", "programmer", "nemesis", "reporter", "lord", "worker", "slob", "migrant", "voyeur", "monk", "father", "companion", "competitor", "boss", "astrophysicist", "listener", "tourist", "patriot", "curmudgeon", "drunk", "hero", "rabblerouser", "dotard"];
+	var vacationSpots = ["Florida", "Hawaii", "Guam", "London", "Italy", "Mexico", "Chile", "Thailand", "Malaysia", "Singapore", "California", "Canada"];
 	
 	//========================================================
-	//Generates a button for each of the strings in arr topics
+	//Generates a button for each of the strings in arr vacationSpots
 	//========================================================
 	function renderButtons() {
-		$('#human-buttons').empty();
-		$.each(topics, function(i, val) {
+		$('#spot-buttons').empty();
+		$.each(vacationSpots, function(i, val) {
 			var newBtn = $('<button>')
 			newBtn.addClass('nice-buttons');
-			newBtn.attr('data-name', topics[i]);
-			newBtn.text(topics[i]);
-			$('#human-buttons').append(newBtn);
+			newBtn.attr('data-name', vacationSpots[i]);
+			newBtn.text(vacationSpots[i]);
+			$('#spot-buttons').append(newBtn);
 			console.log(this);
 		});
 	};
@@ -21,11 +21,11 @@ $(document).ready(function() {
 	//Generates new button based on user input
 	//========================================
 
-	$('#add-human').on('click', function(event) {
+	$('#add-spot').on('click', function(event) {
 		event.preventDefault();
-		var newBtnVal = $('#human-input').val().trim();
-		topics.push(newBtnVal);
-		$('#human-buttons').append('<button>' + newBtnVal + '</button>');
+		var newBtnVal = $('#spot-input').val().trim();
+		vacationSpots.push(newBtnVal);
+		$('#spot-buttons').append('<button>' + newBtnVal + '</button>');
 		renderButtons();
 	});
 
@@ -34,7 +34,7 @@ $(document).ready(function() {
 	//Ajax runs when button clicked
 	//==============================
 	
-	var userChoice = '';
+	var userChoice;
 	// function getBtnVal(this.id) {
 	// 	console.log(this).value();
 	// }
@@ -71,10 +71,10 @@ $(document).ready(function() {
 		};
 	});
 
-	$('#human-buttons').on('click', '.nice-buttons', function(event) {
+	$('#spot-buttons').on('click', '.nice-buttons', function(event) {
 		event.preventDefault();
 		$('#gif-dump').empty();
-		userChoice += $(this).attr('data-name');
+		userChoice = $(this).attr('data-name');
 		displayGifs();
 	});
 	

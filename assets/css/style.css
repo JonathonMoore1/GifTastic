@@ -20,6 +20,12 @@
 	margin: 10px;
 }
 
+#spot-form {
+	position: relative;
+	float: right;
+	margin-right: 100px;
+}
+
 button {
 	margin: 2.5px;
 }
@@ -28,16 +34,19 @@ header {
 	position: relative;
 	height: 15%;
 	border-bottom: 4px;
-	border-color: darkgray;
-	background-color: salmon;
+	border-color: rgb(209, 22, 22);
+	background-color: rgba(43, 32, 31, 0.568);
 }
 
 section {
 	position: relative;
-	left: 0px;
+	/* left: 0px; */
 	padding: 30px;
-	margin: 20px;
+	margin: 5% 25% 5% 25%;
+	width: 50%;
 }
+
+
 
 /* p {
 	position: absolute;
