@@ -1,10 +1,12 @@
 $(document).ready(function() {
-
+	//======================================
+	// Array lists all of our vacation spots
+	//======================================
 	var vacationSpots = ["Florida", "Hawaii", "Guam", "London", "Italy", "Mexico", "Chile", "Thailand", "Malaysia", "Singapore", "California", "Canada"];
 	
-	//========================================================
-	//Generates a button for each of the strings in arr vacationSpots
-	//========================================================
+	//=========================================================
+	// Function renders buttons to the DOM based on array above
+	//=========================================================
 	function renderButtons() {
 		$('#spot-buttons').empty();
 		$.each(vacationSpots, function(i, val) {
@@ -16,47 +18,53 @@ $(document).ready(function() {
 			console.log(this);
 		});
 	};
-	// " onclick="getBtnVal(this.id)
-	//========================================
-	//Generates new button based on user input
-	//========================================
+	
+	//======================================================================
+	// On-click event takes the value of user input and creates a new button
+	//======================================================================
 
 	$('#add-spot').on('click', function(event) {
 		event.preventDefault();
 		var newBtnVal = $('#spot-input').val().trim();
 		vacationSpots.push(newBtnVal);
-		$('#spot-buttons').append('<button>' + newBtnVal + '</button>');
+		$('#spot-buttons').append('<button>' + newBtnVal + '</button>'); // A closing tag was required for some reason
 		renderButtons();
 	});
 
 				
 	//==============================
-	//Ajax runs when button clicked
+	// Ajax gets info and makes gifs
 	//==============================
-	
+
 	var userChoice;
-	// function getBtnVal(this.id) {
-	// 	console.log(this).value();
-	// }
+	
 	function displayGifs() {
 
 		$('#gif-dump').empty();
 
-		// var userChoice;
 		var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=QCC1zuV5uK9phZPARyFYam9OUQW8IZbY&q=" + userChoice + "&limit=10&offset=0&rating=G&lang=en&fmt=json";
 		
 		$.ajax({
 			url: queryURL,
 			method: "GET"
 		}).done(function(response) {
-			console.log(response.data);
-			for (i = 0; i < response.data.length; i++) {
-  				var imgURL = response.data[i].images.fixed_height_still.url;
-  				var rating = response.data[i].rating;	
- 				$('#gif-dump').append('<p><img class="gif" src="' + imgURL + '">' + rating + '</p>');	
+			var results = response.data;
+			console.log(results);
+			for (i = 0; i < results.length; i++) {	
+				 var gifDiv = $('<div class="item">');
+				 var rating = results[i].rating;
+				 var p = $('<p>').text("Rating: " + rating);
+				 var vacImage = $('<img>');
+				 vacImage.attr('src', results[i].images.fixed_height_still.url);
+				 gifDiv.prepend(p);
+				 gifDiv.prepend(vacImage);
+				 $('#gif-dump').append(gifDiv);
 			};
 		});
 	};
+	//===============================================================================
+	// On-click event magically makes our gifs go from still to moving and back again
+	//===============================================================================
 
 	$('body').on('click', '.gif', function() {
 	    var src = $(this).attr("src");
@@ -70,6 +78,10 @@ $(document).ready(function() {
 			$(this).attr('src', src.replace(/\_s.gif/i, ".gif"));
 		};
 	});
+
+	//==================================================================
+	// Use data attribute to log the text of the button the user chooses
+	//==================================================================
 
 	$('#spot-buttons').on('click', '.nice-buttons', function(event) {
 		event.preventDefault();
