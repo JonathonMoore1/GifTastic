@@ -30,9 +30,8 @@ $(document).ready(function() {
 		$('#spot-buttons').append('<button>' + newBtnVal + '</button>'); // A closing tag was required for some reason
 		renderButtons();
 	});
-
-				
-	//==============================
+			
+	//==============================P
 	// Ajax gets info and makes gifs
 	//==============================
 
@@ -62,11 +61,12 @@ $(document).ready(function() {
 			};
 		});
 	};
+
 	//===============================================================================
 	// On-click event magically makes our gifs go from still to moving and back again
 	//===============================================================================
 
-	$('body').on('click', '.gif', function() {
+	$('body').on('click', 'img', function() {
 	    var src = $(this).attr("src");
 		if($(this).hasClass('playing'))	{
 			//stop
